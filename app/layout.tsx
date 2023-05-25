@@ -1,10 +1,13 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { League_Spartan } from 'next/font/google'
+
+const league_spartan = League_Spartan({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
     default: 'Dmytro Rykhlyk - Homepage',
-    template: '&s - Dmytro Rykhlyk',
+    template: '%s - Dmytro Rykhlyk',
   },
   description: 'Developer, artist and creator.',
   openGraph: {
@@ -39,7 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={''}>
+      <body className={league_spartan.className}>
         <main>{children}</main>
       </body>
     </html>
