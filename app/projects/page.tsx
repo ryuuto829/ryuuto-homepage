@@ -1,109 +1,77 @@
-import type { Metadata } from 'next'
 import clsx from 'clsx'
+import type { Metadata } from 'next'
 import Image from 'next/image'
+import projects from '@/content/projects'
 
 export const metadata: Metadata = {
   title: 'Projects',
+  description: '',
 }
 
-const PROJECTS_LIST = [
-  {
-    title: 'Kotonoha',
-    description: 'Japanese dictionary & learning tool',
-    stack: 'Next.js, Tailwindcss, RxDB, Radix UI',
-    isHero: true,
-    index: 1,
-  },
-  {
-    title: 'Kotonoha 1',
-    description: 'Japanese dictionary & learning tool',
-    stack: 'Next.js, Tailwindcss, RxDB, Radix UI',
-    index: 3,
-  },
-  {
-    title: 'Kotonoha 2',
-    description: 'Japanese dictionary & learning tool',
-    stack: 'Next.js, Tailwindcss, RxDB, Radix UI',
-    index: 4,
-  },
-  {
-    title: 'Kotonoha 3',
-    description: 'Japanese dictionary & learning tool',
-    stack: 'Next.js, Tailwindcss, RxDB, Radix UI',
-    index: 5,
-  },
-  {
-    title: 'Kotonoha 4',
-    description: 'Japanese dictionary & learning tool',
-    stack: 'Next.js, Tailwindcss, RxDB, Radix UI',
-    index: 6,
-  },
-]
-
-const StackList = ({ stack }: { stack: string }) => {
-  return (
-    <ul className="flex flex-wrap gap-1">
-      {stack.split(', ').map((label) => (
-        <li key={label} className="pr-2 last-of-type:pr-0">
-          {label}
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-const ProjectItem = ({
+function ProjectItem({
   title,
   description,
   stack,
-  isHero,
-  index,
-}: {
-  title: string
-  description: string
-  stack: string
-  isHero?: boolean
-  index: number
-}) => {
-  const isEven = index % 2 === 0 && 'pl-4 pr-16'
-  const isOdd = index % 2 !== 0 && 'pl-16 pr-9'
-
+  format,
+}: (typeof projects)[number]) {
   return (
     <article
       className={clsx(
-        isHero && 'basis-full mt-[10vh]',
-        !isHero && 'basis-1/2 mt-[12vh]',
-        !isHero && (isEven || isOdd),
+        format === 'landscape' && 'basis-full mt-[10vh]',
+        format === 'square' && [
+          'basis-full md:basis-1/2 mt-[12vh]',
+          'square px-0 sm:px-[10%] md:pl-16 md:pr-4 md:[&:nth-child(even_of_.square)]:pl-4 md:[&:nth-child(even_of_.square)]:pr-16',
+        ],
       )}
     >
       <div
         className={clsx(
-          !isHero &&
-            'py-4 pl-[5%] border-l border-dashed border-[color:rgb(0,0,0,0.25)]',
+          format === 'square' &&
+            'py-4 md:pl-[5%] border-0 md:border-l border-dashed border-[color:rgb(0,0,0,0.25)]',
         )}
       >
         <Image
           src="/"
           alt={title}
-          width={isHero ? 350 : 125}
-          height={isHero ? 350 : 125}
-          className=" float-right object-cover bg-slate-500 ml-2"
+          width={format === 'landscape' ? 350 : 125}
+          height={format === 'landscape' ? 350 : 125}
+          className={clsx(
+            'float-right object-cover bg-slate-500 ml-2',
+            format === 'landscape' &&
+              'w-[200px] h-[200px] md:w-[290px] md:h-[290px] lg:w-[350px] lg:h-[350px]',
+            format === 'square' &&
+              'w-[95px] h-[95px] lg:w-[125px] lg:h-[125px]',
+          )}
         />
-        <div className={clsx(isHero ? 'mb-[2vh] font-medium' : 'hidden')}>
+        <div
+          className={clsx(
+            format === 'landscape' ? 'mb-[2vh] font-medium' : 'hidden',
+          )}
+        >
           Featured
         </div>
         <h2
           className={clsx(
-            isHero ? 'text-7xl' : 'text-3xl',
+            format === 'landscape' ? 'text-7xl' : 'text-3xl',
             'font-bold mb-[2vh]',
           )}
         >
           {title}
         </h2>
-        <p className={clsx(isHero ? 'py-6 font-semibold' : 'py-2')}>
+        <p
+          className={clsx(
+            format === 'landscape' ? 'py-6 font-semibold' : 'py-2',
+          )}
+        >
           {description}
         </p>
-        <StackList stack={stack} />
+        <ul className="flex flex-wrap gap-1">
+          {stack.split(', ').map((label) => (
+            <li key={label} className="pr-2">
+              {label}
+            </li>
+          ))}
+        </ul>
       </div>
     </article>
   )
@@ -111,11 +79,11 @@ const ProjectItem = ({
 
 export default function ProjectsPage() {
   return (
-    <section className="max-w-5xl mx-auto">
+    <section className="max-w-5xl mx-auto px-6 md:px-16">
       <h1 className="font-bold text-5xl py-16">Projects</h1>
       <div className="flex flex-wrap mb-[5vh]">
-        {PROJECTS_LIST.map((item) => (
-          <ProjectItem key={item.index} {...item} />
+        {projects.map((item) => (
+          <ProjectItem key={item.title} {...item} />
         ))}
       </div>
     </section>
