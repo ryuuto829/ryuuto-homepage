@@ -1,6 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 import { League_Spartan } from 'next/font/google'
+import Sidebar from './components/sidebar'
 
 const league_spartan = League_Spartan({ subsets: ['latin'] })
 
@@ -43,7 +44,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={league_spartan.className}>
-        <main>{children}</main>
+        <Sidebar />
+        <main className="ml-[80px]">{children}</main>
       </body>
     </html>
   )
