@@ -2,20 +2,21 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { League_Spartan } from 'next/font/google'
 import Sidebar from './components/sidebar'
+import site from '../content/site'
 
 const league_spartan = League_Spartan({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
-    default: 'Dmytro Rykhlyk - Homepage',
-    template: '%s - Dmytro Rykhlyk',
+    default: `${site.title} - Homepage`,
+    template: `%s - ${site.title}`,
   },
-  description: 'Developer, artist and creator.',
+  description: site.description,
   openGraph: {
-    title: 'Dmytro Rykhlyk - Homepage',
-    description: 'Developer, artist and creator.',
-    url: 'https://dmytrorykhlyk.com',
-    siteName: 'Dmytro Rykhlyk',
+    title: `${site.title} - Homepage`,
+    description: site.description,
+    url: site.url,
+    siteName: site.title,
     images: [
       {
         /** @todo Add image */
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    title: 'Dmytro Rykhlyk',
+    title: site.title,
     card: 'summary_large_image',
   },
   icons: {
@@ -45,7 +46,21 @@ export default function RootLayout({
     <html lang="en">
       <body className={league_spartan.className}>
         <Sidebar />
-        <main className="ml-[80px]">{children}</main>
+        <div className="flex flex-col min-h-screen ml-[80px]">
+          <header className="py-8 text-xl">{site.title}</header>
+          <main>{children}</main>
+          <footer>
+            <p>
+              &copy;
+              <time dateTime={site.builtTime.toISOString()}>
+                {site.builtTime.getFullYear()}
+              </time>
+              <a href={site.url} rel="home" className="hover:underline">
+                {site.author}
+              </a>
+            </p>
+          </footer>
+        </div>
       </body>
     </html>
   )
