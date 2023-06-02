@@ -8,6 +8,10 @@ module.exports = {
   theme: {
     extend: {
       keyframes: {
+        fadeInAndScale: {
+          from: { opacity: 0, transform: 'scale(0.7)' },
+          to: { opacity: 1, transform: 'scale(1)' },
+        },
         overlayShow: {
           from: { opacity: 0 },
           to: { opacity: 1 },
@@ -27,6 +31,7 @@ module.exports = {
       },
     },
     animation: {
+      fadeInAndScale: 'fadeInAndScale 150ms cubic-bezier(0.4, 0, 0.2, 1)',
       overlayShow: 'overlayShow 150ms cubic-bezier(0.4, 0, 0.2, 1)',
       overlayHide: 'overlayHide 150ms cubic-bezier(0.4, 0, 0.2, 1)',
       sidebarShow: 'sidebarShow 150ms cubic-bezier(0.4, 0, 0.2, 1)',
