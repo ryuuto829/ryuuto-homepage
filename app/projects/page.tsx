@@ -2,6 +2,7 @@ import clsx from 'clsx'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import projects from '@/content/projects'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Projects',
@@ -50,14 +51,16 @@ function ProjectItem({
         >
           Featured
         </div>
-        <h2
-          className={clsx(
-            format === 'landscape' ? 'text-7xl' : 'text-3xl',
-            'font-bold mb-[2vh]',
-          )}
-        >
-          {title}
-        </h2>
+        <Link href={'/'} className="inline-block">
+          <h2
+            className={clsx(
+              format === 'landscape' ? 'text-7xl' : 'text-3xl',
+              'font-bold mb-[2vh]',
+            )}
+          >
+            {title}
+          </h2>
+        </Link>
         <p
           className={clsx(
             format === 'landscape' ? 'py-6 font-semibold' : 'py-2',
@@ -65,9 +68,12 @@ function ProjectItem({
         >
           {description}
         </p>
-        <ul className="flex flex-wrap gap-1">
+        <ul className="flex flex-wrap">
           {stack.split(', ').map((label) => (
-            <li key={label} className="pr-2">
+            <li
+              key={label}
+              className="before:content-['•'] before:mx-2 first:before:content-none"
+            >
               {label}
             </li>
           ))}

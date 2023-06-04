@@ -2,7 +2,9 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { League_Spartan } from 'next/font/google'
 import Sidebar from './components/sidebar'
+import Footer from './components/footer'
 import site from '../content/site'
+import Header from './components/header'
 
 const league_spartan = League_Spartan({ subsets: ['latin'] })
 
@@ -46,20 +48,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={league_spartan.className}>
         <Sidebar />
-        <div className="flex flex-col min-h-screen ml-[80px]">
-          <header className="py-8 text-xl">{site.title}</header>
-          <main>{children}</main>
-          <footer>
-            <p>
-              &copy;
-              <time dateTime={site.builtTime.toISOString()}>
-                {site.builtTime.getFullYear()}
-              </time>
-              <a href={site.url} rel="home" className="hover:underline">
-                {site.author}
-              </a>
-            </p>
-          </footer>
+        <div className="flex flex-col px-14 min-h-screen ml-[80px]">
+          <Header />
+          <main className="flex items-center min-h-[362px] overflow-hidden">
+            {children}
+          </main>
+          <Footer />
         </div>
       </body>
     </html>
