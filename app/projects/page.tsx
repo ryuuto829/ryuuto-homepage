@@ -51,7 +51,7 @@ function ProjectItem({
         >
           Featured
         </div>
-        <Link href={'/'} className="inline-block">
+        <Link href={'/'} className="hover:underline">
           <h2
             className={clsx(
               format === 'landscape' ? 'text-7xl' : 'text-3xl',

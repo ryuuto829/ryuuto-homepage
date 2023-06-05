@@ -16,7 +16,7 @@ export default function Sidebar() {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="fixed z-50 top-0 left-0 w-20 h-full bg-black text-white flex flex-col items-center py-8">
+        <button className="fixed z-50 top-0 left-0 w-20 h-full bg-black text-white flex flex-col items-center py-8 data-[state=open]:hidden">
           <HamburgerMenuIcon className="animate-fadeInAndScale w-[29px] h-[29px] mb-8" />
           <div className={clsx(buttonLabelClasses)}>Menu</div>
         </button>
