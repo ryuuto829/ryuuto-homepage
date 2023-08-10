@@ -1,12 +1,22 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { League_Spartan } from 'next/font/google'
+import {
+  Noto_Serif,
+  Inter,
+  Noto_Serif_Display,
+  Noto_Serif_JP,
+} from 'next/font/google'
 import Sidebar from './components/sidebar'
 import Footer from './components/footer'
 import site from '../content/site'
 import Header from './components/header'
 
-const league_spartan = League_Spartan({ subsets: ['latin'] })
+const noto_serif = Noto_Serif_JP({
+  weight: '300',
+  subsets: ['latin'],
+  variable: '--font-noto-serif',
+})
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 
 export const metadata: Metadata = {
   title: {
@@ -46,15 +56,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={league_spartan.className}>
-        <Sidebar />
-        <div className="flex flex-col px-14 min-h-screen ml-[80px]">
-          <Header />
-          <main className="flex items-center min-h-[362px] overflow-hidden">
-            {children}
-          </main>
-          <Footer />
-        </div>
+      <body className={`${noto_serif.variable} ${inter.variable} bg-[#d7d6d2]`}>
+        {/* <Sidebar /> */}
+        {/* <div className="flex flex-col px-14 min-h-screen ml-[80px]"> */}
+        {/* <Header /> */}
+        {/* <main className="flex items-center min-h-[362px] overflow-hidden"> */}
+        {children}
+        {/* </main> */}
+        {/* <Footer /> */}
+        {/* </div> */}
       </body>
     </html>
   )

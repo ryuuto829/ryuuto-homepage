@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        serif: ['var(--font-noto-serif)'],
+        sans: ['var(--font-inter)'],
+      },
       keyframes: {
         fadeInAndScale: {
           from: { opacity: 0, transform: 'scale(0.7)' },
@@ -38,5 +42,5 @@ module.exports = {
       sidebarHide: 'sidebarHide 150ms cubic-bezier(0.4, 0, 0.2, 1)',
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }
