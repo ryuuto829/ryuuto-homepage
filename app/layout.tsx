@@ -56,7 +56,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${noto_serif.variable} ${inter.variable} bg-[#d7d6d2]`}>
+      <body className={`${noto_serif.variable} ${inter.variable} bg-white`}>
         {/* <Sidebar /> */}
         {/* <div className="flex flex-col px-14 min-h-screen ml-[80px]"> */}
         {/* <Header /> */}
