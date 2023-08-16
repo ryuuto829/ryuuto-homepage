@@ -1,11 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { allPosts, Post } from 'contentlayer/generated'
+import { useMDXComponent } from 'next-contentlayer/hooks'
 
 export const metadata: Metadata = {
   title: 'Blog',
 }
 
 export default function BlogPage() {
+  // Parse the MDX file via the useMDXComponent hook.
+  const MDXContent = useMDXComponent(allPosts[0].body.code)
+
   return (
     <section className="max-w-4xl mx-auto">
       <h1 className="font-bold text-5xl py-16">Blog</h1>
@@ -33,6 +38,15 @@ export default function BlogPage() {
           ))}
         </ul>
       </div>
+
+      {allPosts &&
+        allPosts.map((post, idx) => (
+          <div key={idx}>
+            <Link href={post.url}>{post.title}</Link>
+
+            <MDXContent />
+          </div>
+        ))}
     </section>
   )
 }

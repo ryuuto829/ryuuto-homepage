@@ -1,4 +1,4 @@
-import './globals.css'
+import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import {
   Noto_Serif,
@@ -6,10 +6,10 @@ import {
   Noto_Serif_Display,
   Noto_Serif_JP,
 } from 'next/font/google'
-import Sidebar from './components/sidebar'
-import Footer from './components/footer'
-import site from '../content/site'
-import Header from './components/header'
+import Sidebar from '@/components/sidebar'
+import Footer from '@/components/footer'
+import site from '@/content/site'
+import Header from '@/components/header'
 
 const noto_serif = Noto_Serif_JP({
   weight: '300',

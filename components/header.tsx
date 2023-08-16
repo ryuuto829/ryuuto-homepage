@@ -1,5 +1,5 @@
 import { GitHubLogoIcon } from '@radix-ui/react-icons'
-import site from '../../content/site'
+import site from '../content/site'
 
 export default function Header() {
   return (
